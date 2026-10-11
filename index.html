@@ -202,6 +202,17 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="theme-color" content="#0a192f" />
   <link rel="icon" href="/icons/finelybd.svg" type="image/svg+xml" />
+
+  <style>
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; align-items: stretch; gap: .75rem; padding: 1rem; }
+      .nav-container nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+      .nav-container nav a { margin-left: 0 !important; }
+      .hero-content, .container, .portal-container { max-width: 100%; }
+      .auth-card, .card { padding: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
 <body>
 
