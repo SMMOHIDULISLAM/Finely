@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finely BD | Financial, Banking & Business Advisory</title>
+  <meta name="description" content="Finely BD provides corporate finance forecasting, commercial banking facilitation, accounting, and business intelligence." />
+  <style>
+    :root {
+      --primary: #0a192f;
+      --primary-light: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --gold: #d97706;
+      --text: #334155;
+      --text-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    nav { display: flex; align-items: center; gap: 1.5rem; }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-portal { background: var(--primary); color: #fff; }
+    .btn-portal:hover { background: var(--primary-light); }
+
+    .hero {
+      background: linear-gradient(135deg, #0a192f 0%, #1e293b 100%);
+      color: #fff;
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+    }
+    .hero-content { max-width: 850px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.2);
+      color: #93c5fd;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+    }
+    .hero h1 {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      letter-spacing: -1px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      margin-bottom: 2.25rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-title { text-align: center; margin-bottom: 3.5rem; }
+    .section-title h2 { font-size: 2.25rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .section-title p { color: #64748b; font-size: 1.05rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-num {
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .service-card h3 { font-size: 1.25rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.95rem; color: #64748b; }
+
+    /* Leadership Section */
+    .leadership-section { background: #ffffff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .team-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .team-role {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: #eff6ff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .team-name { font-size: 1.35rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .team-bio { font-size: 0.9rem; color: #64748b; line-height: 1.5; }
+
+    /* Payment & Notice */
+    .notice-box {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+    .notice-box strong { color: var(--text-dark); }
+
+    .cta-banner {
+      background: var(--primary);
+      color: #fff;
+      padding: 4.5rem 2rem;
+      text-align: center;
+    }
+    .cta-banner h2 { font-size: 2.25rem; margin-bottom: 0.75rem; }
+    .cta-banner p { color: #94a3b8; max-width: 600px; margin: 0 auto 2rem; }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.1rem; }
+      nav { flex-wrap: wrap; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Finely <span>BD</span></a>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#leadership">Leadership</a>
+        <a href="login.html" class="btn btn-portal">Portal Login</a>
+        <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">www.finelybd.com | Financial & Operational Advisory</div>
+        <h1>Strategic Financial Acumen. Grounded in Institutional Practice.</h1>
+        <p>Finely BD delivers quantitative finance modeling, commercial banking channel facilitation, and streamlined business intelligence across Bangladesh and emerging markets.</p>
+        <div>
+          <a href="contact.html" class="btn btn-primary" style="padding: 0.8rem 1.75rem;">Schedule a Consultation</a>
+          <a href="login.html" class="btn btn-portal" style="padding: 0.8rem 1.75rem; margin-left: 0.75rem;">Staff & Client Portal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <div class="section-title">
+        <h2>Our Core Advisory Disciplines</h2>
+        <p>Precision-engineered solutions for institutional and corporate growth.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">PILLAR 01</div>
+          <h3>Business, made smarter.</h3>
+          <p>Workflow automation, strategic operational structuring, and data-driven management frameworks designed to eliminate operational friction.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-num">PILLAR 02</div>
+          <h3>Accounting, simplified.</h3>
+          <p>Structured ledger architecture, audit trail reconciliation, and reporting clarity to turn regulatory compliance into actionable insights.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-num">PILLAR 03</div>
+          <h3>Finance, with foresight.</h3>
+          <p>Quantitative cash-flow forecasting, macroeconomic stress modeling, and liquidity optimization based on rigorous empirical time-series methods.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-num">PILLAR 04</div>
+          <h3>Banking, connected.</h3>
+          <p>Payment ecosystem channel architecture (MFS, NPSB, RTGS, Cards), central bank compliance alignment, and commercial banking facilitation.</p>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>Digital Payment Infrastructure Notice:</strong> Multichannel integration for <strong>Bank Transfers, Credit/Debit Cards, and Mobile Financial Services (MFS: bKash, Nagad, Rocket)</strong> is currently in scheduled integration.
+      </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="leadership-section">
+      <div class="section">
+        <div class="section-title">
+          <h2>Executive Leadership</h2>
+          <p>Experienced governance committed to strategic integrity, transparency, and data discipline.</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <span class="team-role">Chairman</span>
+            <h3 class="team-name">Umme Mazrin Nabiha</h3>
+            <p class="team-bio">Provides strategic governance and institutional vision, steering Finely BD toward sustainable long-term advisory excellence and corporate oversight.</p>
+          </div>
+
+          <div class="team-card">
+            <span class="team-role">MD & CEO</span>
+            <h3 class="team-name">S M Mohidul Islam</h3>
+            <p class="team-bio">Leads executive management and advisory practice. Brings extensive senior commercial banking experience (Pubali Bank PLC) and quantitative data science research (SUST).</p>
+          </div>
+
+          <div class="team-card">
+            <span class="team-role">Director</span>
+            <h3 class="team-name">Jannatul Nawim</h3>
+            <p class="team-bio">Directs operational strategy, resource deployment, and stakeholder relations, ensuring continuous alignment between client deliverables and internal execution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <h2>Reserve Your Consultation Session</h2>
+      <p>Initiate a client account and request a strategic consultation. An initial consultation fee applies upon booking.</p>
+      <a href="contact.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">Proceed to Consultation</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Finely BD (www.finelybd.com). All rights reserved. | Official Contact & Inquiries</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Access | Finely BD</title>
+  <meta name="description" content="Secure login window for Finely BD Administrators, Staff, and Valued Customers." />
+  <style>
+    :root {
+      --primary: #0a192f;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --text: #334155;
+      --text-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --emerald: #059669;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+    header { background: #fff; border-bottom: 1px solid var(--border); }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav a { color: var(--text); text-decoration: none; font-weight: 500; }
+
+    .portal-container { max-width: 880px; margin: 3rem auto 5rem; padding: 0 1.5rem; }
+    .auth-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .auth-header { text-align: center; margin-bottom: 2rem; }
+    .auth-header h1 { font-size: 1.85rem; color: var(--text-dark); margin-bottom: 0.35rem; }
+    .auth-header p { color: #64748b; font-size: 0.95rem; }
+
+    /* Role Tabs */
+    .role-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .role-tab {
+      flex: 1;
+      padding: 0.85rem;
+      text-align: center;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .role-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #eff6ff;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.35rem; }
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+    .btn-login {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .btn-login:hover { background: var(--accent-hover); }
+
+    /* Interactive Demo Dashboard Preview */
+    .mock-dashboard {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .badge-admin { background: #fee2e2; color: #991b1b; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; }
+    .admin-panel {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .admin-panel h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .task-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+      background: #fff;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .code-editor-box {
+      margin-top: 1.5rem;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      min-height: 80px;
+    }
+    footer { text-align: center; padding: 2.5rem; color: #94a3b8; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Finely <span>BD</span></a>
+      <nav>
+        <a href="index.html">← Back to Homepage</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="portal-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Finely BD Access Portal</h1>
+        <p>Dedicated access window for System Administrators, Operations Staff, and Registered Clients.</p>
+      </div>
+
+      <div class="role-tabs">
+        <div class="role-tab active" onclick="switchTab('admin')">Admin Window</div>
+        <div class="role-tab" onclick="switchTab('staff')">Staff Window</div>
+        <div class="role-tab" onclick="switchTab('customer')">Customer Window</div>
+      </div>
+
+      <div id="role-description" style="margin-bottom: 1.5rem; font-size: 0.9rem; color: #475569;">
+        <strong>Administrator Level:</strong> Full administrative control to assign staff duties (onsite/offsite) and edit system configuration code blocks.
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Demo: Authenticated with Finely BD Role Gateway.');">
+        <div class="form-group">
+          <label>User Identifier / Corporate Email</label>
+          <input type="text" id="login-email" placeholder="admin@finelybd.com" required />
+        </div>
+        <div class="form-group">
+          <label>Security Key / Password</label>
+          <input type="password" placeholder="••••••••••••" required />
+        </div>
+        <button type="submit" class="btn-login" id="login-btn">Authenticate & Access Portal</button>
+      </form>
+
+      <!-- Admin Preview Panel Showing Work Assignment & Code Block Capability -->
+      <div class="mock-dashboard" id="admin-feature-preview">
+        <div class="mock-header">
+          <h2 style="font-size: 1.25rem; color: var(--text-dark);">Administrative Management Console (Feature Preview)</h2>
+          <span class="badge-admin">Admin Privilege Active</span>
+        </div>
+
+        <!-- Staff Assignment Module -->
+        <div class="admin-panel">
+          <h3>1. Staff Work Allocation (Onsite vs. Offsite)</h3>
+          <p style="font-size: 0.85rem; color: #64748b;">Assign advisory work orders and consultation tasks across active personnel.</p>
+          
+          <div class="task-row">
+            <div><strong>Task:</strong> Banking Channel Compliance Audit</div>
+            <div><strong>Staff:</strong> Jannatul Nawim</div>
+            <div><span style="background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">ONSITE</span></div>
+            <button style="padding: 4px 10px; font-size: 0.8rem; cursor: pointer;">Reassign</button>
+          </div>
+
+          <div class="task-row">
+            <div><strong>Task:</strong> Liquidity Model Review</div>
+            <div><strong>Staff:</strong> Advisory Team A</div>
+            <div><span style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">OFFSITE</span></div>
+            <button style="padding: 4px 10px; font-size: 0.8rem; cursor: pointer;">Reassign</button>
+          </div>
+        </div>
+
+        <!-- Code Block Modifier Module -->
+        <div class="admin-panel">
+          <h3>2. System Code Block Modifier</h3>
+          <p style="font-size: 0.85rem; color: #64748b;">Administrators can directly update live script snippets, tracking tags, and operational code blocks.</p>
+          <div class="code-editor-box" contenteditable="true">
+// Finely BD System Configuration Snippet
+const FINELY_CONFIG = {
+  portalVersion: "2.1.0",
+  minConsultationFeeRequired: true,
+  supportedGateways: ["BANK_TRANSFER", "CARD", "BKASH", "NAGAD", "ROCKET"],
+  mode: "PRODUCTION_ACTIVE"
+};
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Finely BD (www.finelybd.com). All rights reserved.</p>
+  </footer>
+
+  <script>
+    function switchTab(role) {
+      document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      const desc = document.getElementById('role-description');
+      const btn = document.getElementById('login-btn');
+      const email = document.getElementById('login-email');
+      const preview = document.getElementById('admin-feature-preview');
+
+      if (role === 'admin') {
+        desc.innerHTML = '<strong>Administrator Level:</strong> Full administrative control to assign staff duties (onsite/offsite) and edit system configuration code blocks.';
+        btn.innerText = 'Log In as Administrator';
+        email.placeholder = 'admin@finelybd.com';
+        preview.style.display = 'block';
+      } else if (role === 'staff') {
+        desc.innerHTML = '<strong>Staff Level:</strong> View assigned client consultation dossiers, task schedules, and onsite/offsite action items.';
+        btn.innerText = 'Log In as Staff';
+        email.placeholder = 'staff@finelybd.com';
+        preview.style.display = 'none';
+      } else {
+        desc.innerHTML = '<strong>Customer Level:</strong> Access your active consultation window, consultation fee payment receipts, and advisory reports.';
+        btn.innerText = 'Log In to Customer Account';
+        email.placeholder = 'client@organization.com';
+        preview.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
