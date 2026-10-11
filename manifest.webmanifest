@@ -1,0 +1,18 @@
+{
+  "name": "FinelyBD — AI Business Solutions",
+  "short_name": "FinelyBD",
+  "description": "Business advisory, accounting and AI-enabled services",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0a192f",
+  "icons": [
+    {
+      "src": "/icons/finelybd.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
