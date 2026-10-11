@@ -169,20 +169,12 @@
         <strong>Administrator Level:</strong> Full administrative control to assign staff duties (onsite/offsite) and edit system configuration code blocks.
       </div>
 
-      <form onsubmit="event.preventDefault(); alert('Demo: Authenticated with Finely BD Role Gateway.');">
-        <div class="form-group">
-          <label>User Identifier / Corporate Email</label>
-          <input type="text" id="login-email" placeholder="admin@finelybd.com" required />
-        </div>
-        <div class="form-group">
-          <label>Security Key / Password</label>
-          <input type="password" placeholder="••••••••••••" required />
-        </div>
-        <button type="submit" class="btn-login" id="login-btn">Authenticate & Access Portal</button>
-      </form>
-
+      <div role="status" style="padding:1.25rem;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;margin:1rem 0;">
+        <h2 style="margin-bottom:.5rem;">Secure portal is under development</h2>
+        <p>Customer, staff and administrator sign-in is not yet available. No passwords are collected on this page. For service enquiries, <a href="contact.html">contact FinelyBD</a>.</p>
+      </div>
       <!-- Admin Preview Panel Showing Work Assignment & Code Block Capability -->
-      <div class="mock-dashboard" id="admin-feature-preview">
+      <div class="mock-dashboard" id="admin-feature-preview" hidden style="display:none">
         <div class="mock-header">
           <h2 style="font-size: 1.25rem; color: var(--text-dark);">Administrative Management Console (Feature Preview)</h2>
           <span class="badge-admin">Admin Privilege Active</span>
@@ -242,18 +234,18 @@ const FINELY_CONFIG = {
 
       if (role === 'admin') {
         desc.innerHTML = '<strong>Administrator Level:</strong> Full administrative control to assign staff duties (onsite/offsite) and edit system configuration code blocks.';
-        btn.innerText = 'Log In as Administrator';
-        email.placeholder = 'admin@finelybd.com';
-        preview.style.display = 'block';
+        if (btn) btn.innerText = 'Portal Preview';
+        if (email) email.placeholder = 'Not available';
+        preview.style.display = 'none';
       } else if (role === 'staff') {
         desc.innerHTML = '<strong>Staff Level:</strong> View assigned client consultation dossiers, task schedules, and onsite/offsite action items.';
-        btn.innerText = 'Log In as Staff';
-        email.placeholder = 'staff@finelybd.com';
+        if (btn) btn.innerText = 'Portal Preview';
+        if (email) email.placeholder = 'Not available';
         preview.style.display = 'none';
       } else {
         desc.innerHTML = '<strong>Customer Level:</strong> Access your active consultation window, consultation fee payment receipts, and advisory reports.';
-        btn.innerText = 'Log In to Customer Account';
-        email.placeholder = 'client@organization.com';
+        if (btn) btn.innerText = 'Portal Preview';
+        if (email) email.placeholder = 'Not available';
         preview.style.display = 'none';
       }
     }
