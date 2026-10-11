@@ -140,6 +140,17 @@
     }
     footer { text-align: center; padding: 2.5rem; color: #94a3b8; font-size: 0.85rem; }
   </style>
+
+  <style>
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; align-items: stretch; gap: .75rem; padding: 1rem; }
+      .nav-container nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+      .nav-container nav a { margin-left: 0 !important; }
+      .hero-content, .container, .portal-container { max-width: 100%; }
+      .auth-card, .card { padding: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
 <body>
 
@@ -160,9 +171,9 @@
       </div>
 
       <div class="role-tabs">
-        <div class="role-tab active" onclick="switchTab('admin')">Admin Window</div>
-        <div class="role-tab" onclick="switchTab('staff')">Staff Window</div>
-        <div class="role-tab" onclick="switchTab('customer')">Customer Window</div>
+        <div class="role-tab active" onclick="switchTab('admin', this)">Admin Window</div>
+        <div class="role-tab" onclick="switchTab('staff', this)">Staff Window</div>
+        <div class="role-tab" onclick="switchTab('customer', this)">Customer Window</div>
       </div>
 
       <div id="role-description" style="margin-bottom: 1.5rem; font-size: 0.9rem; color: #475569;">
@@ -177,7 +188,7 @@
       <div class="mock-dashboard" id="admin-feature-preview" hidden style="display:none">
         <div class="mock-header">
           <h2 style="font-size: 1.25rem; color: var(--text-dark);">Administrative Management Console (Feature Preview)</h2>
-          <span class="badge-admin">Admin Privilege Active</span>
+          <span class="badge-admin">Nonfunctional preview</span>
         </div>
 
         <!-- Staff Assignment Module -->
@@ -224,31 +235,15 @@ const FINELY_CONFIG = {
   </footer>
 
   <script>
-    function switchTab(role) {
-      document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-      const desc = document.getElementById('role-description');
-      const btn = document.getElementById('login-btn');
-      const email = document.getElementById('login-email');
-      const preview = document.getElementById('admin-feature-preview');
-
-      if (role === 'admin') {
-        desc.innerHTML = '<strong>Administrator Level:</strong> Full administrative control to assign staff duties (onsite/offsite) and edit system configuration code blocks.';
-        if (btn) btn.innerText = 'Portal Preview';
-        if (email) email.placeholder = 'Not available';
-        preview.style.display = 'none';
-      } else if (role === 'staff') {
-        desc.innerHTML = '<strong>Staff Level:</strong> View assigned client consultation dossiers, task schedules, and onsite/offsite action items.';
-        if (btn) btn.innerText = 'Portal Preview';
-        if (email) email.placeholder = 'Not available';
-        preview.style.display = 'none';
-      } else {
-        desc.innerHTML = '<strong>Customer Level:</strong> Access your active consultation window, consultation fee payment receipts, and advisory reports.';
-        if (btn) btn.innerText = 'Portal Preview';
-        if (email) email.placeholder = 'Not available';
-        preview.style.display = 'none';
-      }
-    }
-  </script>
+function switchTab(role, clicked) {
+  document.querySelectorAll('.role-tab').forEach(tab => tab.classList.remove('active'));
+  if (clicked) clicked.classList.add('active');
+  const desc = document.getElementById('role-description');
+  const preview = document.getElementById('admin-feature-preview');
+  const labels = {admin:'Administrator',staff:'Staff',customer:'Customer'};
+  if(desc) desc.textContent = (labels[role] || 'Customer') + ' account access is not available yet. Please do not enter credentials on this site.';
+  if(preview) { preview.hidden = true; preview.style.display = 'none'; }
+}
+</script>
 </body>
 </html>
