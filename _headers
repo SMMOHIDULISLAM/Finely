@@ -1,0 +1,15 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+
+/login.html
+  Cache-Control: no-store
+
+/contact.html
+  Cache-Control: no-store
+
+/thank-you.html
+  Cache-Control: no-store
