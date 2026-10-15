@@ -1,0 +1,12 @@
+# FinelyBD is a static HTML/CSS/JS website and installable PWA.
+# Do not use a Next.js build plugin for this repository.
+[build]
+  publish = "."
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
