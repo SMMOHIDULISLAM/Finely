@@ -1,0 +1,17 @@
+/* FinelyBD background imagery: preserve readable text and controls across devices. */
+body { background-image: linear-gradient(120deg,rgba(245,250,255,.94),rgba(239,250,249,.91)),url('/assets/ai-business-dashboard.svg'); background-size:cover; background-position:center top; background-attachment:fixed; }
+body.page-home .hero {background-image:linear-gradient(100deg,rgba(4,17,37,.94),rgba(8,36,60,.78)),url('/assets/ai-business-dashboard.svg');background-size:cover;background-position:center;color:#fff;}
+body.page-home .hero h1,body.page-home .hero p{color:#fff;text-shadow:0 2px 12px #00182e;}
+body.page-home .hero .hero-content{background:rgba(3,17,34,.42);padding:clamp(1rem,4vw,3rem);border-radius:22px;backdrop-filter:blur(3px);}
+body.page-home #services{background:rgba(255,255,255,.90);border-radius:22px;margin-top:2rem;margin-bottom:2rem;}
+body.page-home .leadership-section{background:linear-gradient(rgba(247,252,255,.93),rgba(247,252,255,.93)),url('/assets/ai-business-dashboard.svg') center/cover;}
+body.page-home .cta-banner{background:linear-gradient(110deg,rgba(4,17,37,.94),rgba(9,45,67,.88)),url('/assets/ai-business-dashboard.svg') center/cover;}
+body.page-contact .container,body.page-login .portal-container{position:relative;}
+body.page-contact .card,body.page-login .auth-card{background:rgba(255,255,255,.97);box-shadow:0 20px 65px rgba(5,30,54,.17);}
+body.page-payments,body.page-mobile{background-image:linear-gradient(120deg,rgba(3,17,34,.92),rgba(6,41,57,.88)),url('/assets/ai-business-dashboard.svg');background-size:cover;background-position:center;background-attachment:fixed;color:#fff;}
+body.page-payments .tile,body.page-mobile .card{background:rgba(10,35,60,.94);backdrop-filter:blur(4px);}
+body.page-payments h1,body.page-mobile h1{color:#fff;}
+body.page-payments p,body.page-mobile p{color:#e3f5fa;}
+body.page-contact header,body.page-login header,body.page-home header{background:rgba(255,255,255,.98);}
+@media(max-width:768px){body{background-attachment:scroll;background-position:center top;}body.page-home .hero{background-position:60% center;}body.page-home .hero .hero-content{padding:1.25rem;}body.page-home #services{margin:1rem;}body.page-payments,body.page-mobile{background-attachment:scroll;}}
+@media(prefers-reduced-transparency:reduce){body.page-home .hero .hero-content{backdrop-filter:none;background:#061d35;}body.page-payments .tile,body.page-mobile .card{backdrop-filter:none;}}
