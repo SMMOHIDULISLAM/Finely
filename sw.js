@@ -1,5 +1,5 @@
-const CACHE='finelybd-static-v3';
-const ASSETS=['/','/index.html','/contact.html','/login.html','/payments.html','/mobile-app.html','/manifest.webmanifest','/icons/finelybd.svg'];
+const CACHE='finelybd-static-v4';
+const ASSETS=['/','/index.html','/contact.html','/login.html','/payments.html','/mobile-app.html','/manifest.webmanifest','/icons/finelybd.svg','/assets/ai-business-dashboard.svg'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
   self.skipWaiting();
