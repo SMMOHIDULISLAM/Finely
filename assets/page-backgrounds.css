@@ -24,3 +24,13 @@ body.page-payments p,body.page-mobile p{color:#e3f5fa}
 body.page-contact header,body.page-login header,body.page-home header{background:rgba(255,255,255,.97);backdrop-filter:blur(8px)}
 @media(max-width:768px){body,body.page-payments,body.page-mobile{background-attachment:scroll}body.page-home .hero{background-position:62% center;min-height:400px}body.page-home .hero .hero-content{padding:1.25rem}body.page-home #services{margin:1rem}body.page-login .auth-card{padding:1.25rem}body.page-login{background-position:60% center}}
 @media(prefers-reduced-transparency:reduce){body.page-home .hero .hero-content{background:#061d35;backdrop-filter:none}body.page-login .auth-card,body.page-contact .card{background:#fff;backdrop-filter:none}body.page-payments .tile,body.page-mobile .card{backdrop-filter:none}}
+
+/* Review branch image mapping. Six committed SVG assets provide consistent repository-hosted backgrounds. */
+body.page-home .hero{background-image:linear-gradient(100deg,rgba(3,14,37,.91),rgba(5,33,64,.46)),url('/assets/backgrounds/home.svg'),var(--finely-art)}
+body.page-home #services{background-image:linear-gradient(rgba(255,255,255,.97),rgba(255,255,255,.97)),url('/assets/backgrounds/services.svg'),var(--finely-art);background-size:cover}
+body.page-home .cta-banner{background-image:linear-gradient(100deg,rgba(2,17,38,.92),rgba(4,41,70,.76)),url('/assets/backgrounds/how-it-works.svg'),var(--finely-art)}
+body.page-home .leadership-section{background-image:linear-gradient(rgba(249,252,255,.92),rgba(249,252,255,.95)),url('/assets/backgrounds/about.svg'),var(--finely-art)}
+body.page-login{background-image:linear-gradient(110deg,rgba(3,21,46,.64),rgba(6,55,84,.45)),url('/assets/backgrounds/login.svg'),var(--finely-art)}
+body.page-contact{background-image:linear-gradient(115deg,rgba(5,49,85,.59),rgba(223,248,246,.78)),url('/assets/backgrounds/about.svg'),var(--finely-art)}
+body.page-mobile{background-image:linear-gradient(120deg,rgba(1,17,39,.91),rgba(8,55,74,.77)),url('/assets/backgrounds/ai-agent.svg'),var(--finely-art)}
+body.page-payments{background-image:linear-gradient(115deg,rgba(2,17,43,.94),rgba(0,49,76,.87)),url('/assets/backgrounds/services.svg'),var(--finely-art)}
