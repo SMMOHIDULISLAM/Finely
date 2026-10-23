@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { assets, services } from "@/data/brand";
+import WeatherStrip from "@/components/WeatherStrip";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         <img
           className="hero-image"
           src={assets.hero}
-          alt="A friendly AI assistant connecting financial and business tools against a blue cityscape"
+          alt="Abstract neural network of glowing connected nodes across a deep blue field"
           fetchPriority="high"
         />
         <div className="hero-shade" />
@@ -35,9 +36,10 @@ export default function Home() {
               better <span>humanity.</span>
             </h1>
             <p>
-              Smarter business. Clearer finances. A more connected future. We
-              bring together human expertise and intelligent solutions to help
-              you move forward.
+              An AI-solutions firm: we design, build and deploy AI agents,
+              deliver corporate and international AI projects through our
+              expert network, and teach AI simply — everything we serve, we
+              serve with AI.
             </p>
             <div className="hero-buttons">
               <Link href="/services" className="btn btn-mint">
@@ -81,6 +83,8 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <WeatherStrip />
 
       <div className="purpose-strip">
         <div className="wrap purpose-inner">

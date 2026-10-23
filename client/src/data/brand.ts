@@ -1,23 +1,26 @@
 import {
+  Bot,
   BriefcaseBusiness,
   Calculator,
   ChartNoAxesCombined,
+  Globe2,
+  GraduationCap,
   Landmark,
 } from "lucide-react";
 
 const portable = import.meta.env.VITE_PORTABLE_ASSETS === "true";
 export const assets = {
   logo: portable
-    ? "/assets/finelybd-logo.png"
+    ? "/assets/finelybd-mark.png"
     : "/manus-storage/finelybd-logo_ef08cf3e.png",
   hero: portable
-    ? "/assets/hero-city.webp"
+    ? "/assets/hero-network.png"
     : "/manus-storage/hero-city_9104a891.webp",
   humanity: portable
-    ? "/assets/humanity-city.webp"
+    ? "/assets/humanity-abstract.png"
     : "/manus-storage/humanity-city_b4d2787d.webp",
   solutions: portable
-    ? "/assets/solutions-city.webp"
+    ? "/assets/solutions-abstract.png"
     : "/manus-storage/solutions-city_baa340b3.webp",
 };
 
@@ -90,6 +93,57 @@ export const services = [
       "Commercial banking facilitation",
     ],
   },
+  {
+    id: "ai-agents",
+    number: "05",
+    icon: Bot,
+    color: "indigo",
+    title: "AI agents, built and deployed.",
+    label: "AI agent development & deployment",
+    description:
+      "Autonomous AI agents that work for your business — designed, built, deployed and maintained by our team, end to end.",
+    detail:
+      "Custom AI agent development and deployment for business operations: conversational agents, workflow automations and decision-support systems — engineered, hosted and improved under corporate agreement.",
+    capabilities: [
+      "Custom AI agent development",
+      "Deployment & hosting",
+      "Ongoing improvement",
+    ],
+  },
+  {
+    id: "corporate-global",
+    number: "06",
+    icon: Globe2,
+    color: "cyan",
+    title: "Corporate and global delivery.",
+    label: "Corporate & international AI solutions",
+    description:
+      "Serving companies at home and abroad — from corporate agreements to complex international AI projects, delivered through our expert network.",
+    detail:
+      "AI-based solutions for corporate clients and foreign companies, however large or complicated. We hire and onboard case-to-case domain experts — a built-in freelancer and expert platform — so every assignment is matched with the right team.",
+    capabilities: [
+      "Corporate agreements",
+      "International project delivery",
+      "Case-to-case expert network",
+    ],
+  },
+  {
+    id: "academy",
+    number: "07",
+    icon: GraduationCap,
+    color: "violet",
+    title: "AI skills, taught simply.",
+    label: "Training & development",
+    description:
+      "Easy, practical courses on AI, machine learning and AI agent development — built for corporate teams and the professionals who run them.",
+    detail:
+      "A training and development wing led by Md Ashakur Rahman: accessible courses on AI/ML and AI agent development, developed in-house and delivered or licensed to corporate clients to upskill their teams.",
+    capabilities: [
+      "AI/ML courses for corporates",
+      "AI agent development training",
+      "Corporate licensing",
+    ],
+  },
 ];
 
 export const leaders = [
@@ -133,7 +187,7 @@ export const leaders = [
     name: "Md Ashakur Rahman",
     role: "Director",
     initials: "AR",
-    bio: "Director of FinelyBD and Head of ICT Operations, AI Solutions, AI Agent Development and Cybersecurity. Holds a BSc in CSE and an MSc in Data Science, and serves as faculty at Leading University, Sylhet. A pivotal force behind the company's technology backbone, he leads FinelyBD's largest team.",
+    bio: "Director of FinelyBD and Head of ICT Operations, AI Solutions, AI Agent Development and Cybersecurity, leading the company's Training & Development wing. Holds a BSc in CSE and an MSc in Data Science, and serves as faculty at Leading University, Sylhet. A pivotal force behind the company's technology backbone and its AI/ML education programs, he leads FinelyBD's largest team.",
   },
   {
     name: "Md Jakir Hossain",

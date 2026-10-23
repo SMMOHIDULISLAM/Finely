@@ -11,8 +11,14 @@ export type KnowledgeEntry = {
 
 export const assistantIdentity =
   "You are the FinelyBD assistant, a guide for visitors of the FinelyBD website " +
-  "(finelybd.com). FinelyBD is an advisory and technology firm: AI for a Better " +
-  "Humanity. It provides business workflow automation and operational structuring; " +
+  "(finelybd.com). FinelyBD is an AI-solutions firm: AI for a Better Humanity — " +
+  "every service is delivered with AI. It develops and deploys AI agents and AI " +
+  "business solutions for local and foreign clients under corporate agreements; " +
+  "for large or complicated engagements it onboards specialist experts case by " +
+  "case from its freelancer and expert network. Its training & development wing, " +
+  "led by Md Ashakur Rahman, builds easy-to-learn AI, machine-learning and " +
+  "AI-agent courses sold to corporate clients. Core disciplines: business " +
+  "workflow automation and operational structuring; " +
   "accounting ledger architecture, audit reconciliation and reporting; quantitative " +
   "cash-flow forecasting, macroeconomic stress modeling and liquidity optimization; " +
   "and banking payment ecosystems (MFS, NPSB, RTGS, Cards) with compliance " +
@@ -25,8 +31,9 @@ export const assistantIdentity =
   "leading the legal advisory panel), Adnan Sakib (Director & Head of " +
   "Consultancy for Architecture and Building Construction, BSc Civil Engineering, " +
   "MSc Data Science), Md Ashakur Rahman (Director, Head of ICT Operations, AI " +
-  "Solutions, AI Agent Development & Cybersecurity, faculty at Leading " +
-  "University Sylhet), Md Jakir Hossain (Director, AI business solutions, BBA " +
+  "Solutions, AI Agent Development & Cybersecurity and head of the Training & " +
+  "Development wing, faculty at Leading University Sylhet), Md Jakir Hossain " +
+  "(Director, AI business solutions, BBA " +
   "MIS, MSc Data Science, PhD in Business ongoing), Mohammad Mahmud Hossain " +
   "(Director, corporate bidding, foreign operations and media & press wing), and " +
   "Md Rifat Hossain (Director, Head of Research & Development and Corporate " +
@@ -53,7 +60,7 @@ export const knowledgeBase: KnowledgeEntry[] = [
   {
     keywords: ["service", "offer", "do you do", "what does", "help with", "solution", "consult", "advice", "advisory"],
     answer:
-      "FinelyBD works across four disciplines: (1) business workflow automation and operational structuring; (2) accounting ledger architecture, audit reconciliation and reporting; (3) quantitative cash-flow forecasting, macroeconomic stress modeling and liquidity optimization; and (4) banking payment ecosystems — MFS, NPSB, RTGS and Cards — with compliance alignment and commercial banking facilitation. See the Services page for details, and use the contact form to discuss your project.",
+      "Everything FinelyBD serves, it serves with AI. The firm develops and deploys AI agents and AI business solutions; takes on corporate agreements and foreign clients' AI projects of any size or complexity, onboarding specialist experts from its freelancer and expert network case by case; and runs a training & development wing that builds easy-to-learn AI, ML and AI-agent courses sold to corporate clients. Its core disciplines are: (1) business workflow automation and operational structuring; (2) accounting ledger architecture, audit reconciliation and reporting; (3) quantitative cash-flow forecasting, macroeconomic stress modeling and liquidity optimization; and (4) banking payment ecosystems — MFS, NPSB, RTGS and Cards — with compliance alignment and commercial banking facilitation. See the Services page for details, and use the contact form to discuss your project.",
   },
   {
     keywords: ["pay", "payment", "bkash", "bikash", "rocket", "nagad", "upay", "bank", "transfer", "usd", "visa", "card", "invoice", "fee", "charge"],
@@ -78,7 +85,22 @@ export const knowledgeBase: KnowledgeEntry[] = [
   {
     keywords: ["about", "who are you", "what is finely", "company", "firm", "humanity", "ai for"],
     answer:
-      "FinelyBD — 'AI for a Better Humanity' — is an advisory and technology firm working across Bangladesh and emerging markets, combining human expertise with intelligent solutions: business automation, accounting and audit architecture, quantitative finance modeling, and banking payment ecosystems.",
+      "FinelyBD — 'AI for a Better Humanity' — is an AI-solutions firm working across Bangladesh and international markets: everything it serves, it serves with AI. It develops and deploys AI agents, delivers AI business solutions under corporate agreements, serves foreign companies' AI projects by onboarding case-by-case experts from its freelancer and expert network, and teaches AI, ML and AI-agent development through its training & development wing for corporate clients — alongside its core disciplines of business automation, accounting and audit architecture, quantitative finance modeling, and banking payment ecosystems.",
+  },
+  {
+    keywords: ["ai agent", "agents", "automation", "freelancer", "expert", "hire", "outsource", "foreign", "international", "overseas", "corporate agreement"],
+    answer:
+      "AI agent development and deployment is FinelyBD's core craft. The firm takes on corporate agreements and foreign companies' AI projects of any size or complexity — for large engagements it onboards specialist experts from its freelancer and expert network case by case, so the right expert always works on the right problem. Describe your project via the contact form and the team will scope it with you.",
+  },
+  {
+    keywords: ["weather", "temperature", "forecast", "rain", "climate", "dhaka weather", "bd weather", "hot", "cold"],
+    answer:
+      "A live AI-assisted weather report for Bangladesh — current conditions across all eight divisions (Dhaka, Chattogram, Sylhet, Khulna, Rajshahi, Barishal, Rangpur, Mymensingh) with temperature, wind and a plain-language outlook — is shown right on the Home page, powered by Open-Meteo open data and refreshed automatically every 10 minutes.",
+  },
+  {
+    keywords: ["training", "course", "learn", "learning", "teach", "workshop", "class", "certification", "corporate training"],
+    answer:
+      "FinelyBD's Training & Development wing, led by Director Md Ashakur Rahman, builds easy-to-learn courses on AI, machine learning and AI-agent development — designed for corporate clients who want to upskill their teams. Use the contact form to ask about course catalogs and corporate training programs.",
   },
   {
     keywords: ["portal", "login", "log in", "sign in", "client area", "dashboard", "account"],

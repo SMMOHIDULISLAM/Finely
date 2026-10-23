@@ -45,11 +45,15 @@ export function Header() {
       <div className="wrap header-inner">
         <Link href="/" className="brand" aria-label="FinelyBD home">
           <img
+            className="brand-mark"
             src={assets.logo}
-            alt="FinelyBD — AI for a Better Humanity"
-            width="220"
-            height="88"
+            alt=""
+            width="46"
+            height="46"
           />
+          <span className="brand-word">
+            Finely<em>BD</em>
+          </span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {links.map(link => (
@@ -115,7 +119,10 @@ export function Footer() {
       <div className="wrap footer-top">
         <div className="footer-brand">
           <Link href="/" className="brand">
-            <img src={assets.logo} alt="FinelyBD" width="220" height="88" />
+            <img className="brand-mark" src={assets.logo} alt="" width="46" height="46" />
+            <span className="brand-word">
+              Finely<em>BD</em>
+            </span>
           </Link>
           <p>
             Intelligence with purpose.
