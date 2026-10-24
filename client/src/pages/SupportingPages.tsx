@@ -22,6 +22,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { assets, leaders, services } from "@/data/brand";
+import { paymentSecrets } from "@/config/paymentSecrets";
 
 const externalContactUrl = "https://www.finelybd.com/contact.html";
 const officialWebsiteUrl = "https://www.finelybd.com";
@@ -730,83 +731,27 @@ function PaymentQr({ value, label }: { value: string; label: string }) {
   return <img className="qr-img" src={src} alt={label} />;
 }
 
-const mfsOptions = [
-  {
-    icon: Banknote,
-    name: "bKash",
-    numbers: ["01712834025", "01886834025", "01715235401"],
-  },
-  {
-    icon: Rocket,
-    name: "Rocket",
-    numbers: ["01712834025"],
-  },
-  {
-    icon: WalletCards,
-    name: "Nagad",
-    numbers: ["01712834025"],
-  },
-  {
-    icon: PiggyBank,
-    name: "Upay",
-    numbers: ["01712834025"],
-  },
+/**
+ * Wallet metadata shown on the Payments page. The wallet NUMBERS themselves
+ * are build-time secrets (see config/paymentSecrets.ts) and never appear in
+ * this repository.
+ */
+const mfsMeta = [
+  { icon: Banknote, name: "bKash" },
+  { icon: Rocket, name: "Rocket" },
+  { icon: WalletCards, name: "Nagad" },
+  { icon: PiggyBank, name: "Upay" },
 ] as const;
 
-const usdAccount = [
-  ["Account holder", "S M MOHIDUL ISLAM"],
-  ["Account number", "30000005322271"],
-  ["Routing number", "028000024"],
-  [
-    "Beneficiary address",
-    "House 11/4 Road 2/A Sobujbagh R/A Shibgonj Sylhet, Sylhet, BD-G, 3100, BD",
-  ],
-] as const;
-
-const cardPayments = [
-  {
-    network: "VISA",
-    number: "4549240658108669",
-    currency: "International currency",
-  },
-  {
-    network: "VISA",
-    number: "4549240642968897",
-    currency: "International currency",
-  },
-  {
-    network: "VISA",
-    number: "423858******2974",
-    currency: "International currency",
-  },
-] as const;
-
-const localBankAccounts = [
-  {
-    holder: "S M Mohidul Islam",
-    bank: "Eastern Bank PLC",
-    account: "0921050000793",
-    branch: "Sylhet Branch, Sylhet",
-  },
-  {
-    holder: "S M Mohidul Islam",
-    bank: "United Commercial Bank PLC",
-    account: "0633211000048914",
-    branch: "Sylhet Zinda Bazar Branch, Sylhet",
-  },
-  {
-    holder: "S M Mohidul Islam",
-    bank: "Bank Asia PLC",
-    account: "01934005277",
-    branch: "Shahjalal Upashahar Branch, Sylhet",
-  },
-  {
-    holder: "Saif Ahmed Jaigirder",
-    bank: "Pubali Bank PLC",
-    account: "4969101001053",
-    branch: "Shibgonj Branch, Sylhet",
-  },
-] as const;
+/** Shown in place of QR/account details when payment secrets are not configured. */
+function PaymentFallback({ children }: { children: ReactNode }) {
+  return (
+    <div className="notice payment-notice">
+      <LockKeyhole size={17} />
+      <p>{children}</p>
+    </div>
+  );
+}
 
 export function PaymentsPage() {
   return (
@@ -845,28 +790,42 @@ export function PaymentsPage() {
               </p>
             </div>
             <div className="payment-grid">
-              {mfsOptions.map(({ icon: Icon, name, numbers }) => (
-                <article className="payment-option" key={name}>
-                  <Icon size={23} />
-                  <h3>{name}</h3>
-                  <ul className="wallet-list">
-                    {numbers.map((number) => (
-                      <li className="wallet-item" key={number}>
-                        <PaymentQr
-                          value={`${name} \u2014 FinelyBD payment: ${number}`}
-                          label={`${name} payment QR code`}
-                        />
-                        <span className="wallet-number">
-                          {maskNumber(number)}
+              {mfsMeta.map(({ icon: Icon, name }) => {
+                const wallet = paymentSecrets?.mfs.find(
+                  entry => entry.name === name
+                );
+                return (
+                  <article className="payment-option" key={name}>
+                    <Icon size={23} />
+                    <h3>{name}</h3>
+                    {wallet ? (
+                      <>
+                        <ul className="wallet-list">
+                          {wallet.numbers.map(number => (
+                            <li className="wallet-item" key={number}>
+                              <PaymentQr
+                                value={`${name} \u2014 FinelyBD payment: ${number}`}
+                                label={`${name} payment QR code`}
+                              />
+                              <span className="wallet-number">
+                                {maskNumber(number)}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                        <span className="small-note">
+                          Cash In &middot; Bank Top-up &middot; Send Money
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="small-note">
-                    Cash In &middot; Bank Top-up &middot; Send Money
-                  </span>
-                </article>
-              ))}
+                      </>
+                    ) : (
+                      <p className="small-note">
+                        Wallet number shared on request once your quotation is
+                        confirmed.
+                      </p>
+                    )}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -889,37 +848,46 @@ export function PaymentsPage() {
                 with us first and share the transfer receipt afterwards.
               </p>
             </div>
-            <div className="payment-grid account-grid">
-              {cardPayments.map(({ network, number, currency }) => (
-                <article
-                  className="detail-card card-payment-card"
-                  key={number}
-                >
-                  <div className="card-payment-head">
-                    <div className="card-payment-title">
-                      <CreditCard size={23} />
-                      <h3>{network}</h3>
+            {paymentSecrets && paymentSecrets.cards.length > 0 ? (
+              <div className="payment-grid account-grid">
+                {paymentSecrets.cards.map(({ network, number, currency }) => (
+                  <article
+                    className="detail-card card-payment-card"
+                    key={number}
+                  >
+                    <div className="card-payment-head">
+                      <div className="card-payment-title">
+                        <CreditCard size={23} />
+                        <h3>{network}</h3>
+                      </div>
+                      <PaymentQr
+                        value={`VISA card payment \u2014 FinelyBD: ${number}`}
+                        label={`${network} payment QR code`}
+                      />
                     </div>
-                    <PaymentQr
-                      value={`VISA card payment \u2014 FinelyBD: ${number}`}
-                      label={`${network} payment QR code`}
-                    />
-                  </div>
-                  <dl className="bank-rows">
-                    <div className="bank-row">
-                      <dt className="bank-key">Card number</dt>
-                      <dd className="bank-value">
-                        {maskNumber(number, 6, 4)}
-                      </dd>
-                    </div>
-                    <div className="bank-row">
-                      <dt className="bank-key">Currency</dt>
-                      <dd className="bank-value">{currency}</dd>
-                    </div>
-                  </dl>
-                </article>
-              ))}
-            </div>
+                    <dl className="bank-rows">
+                      <div className="bank-row">
+                        <dt className="bank-key">Card number</dt>
+                        <dd className="bank-value">
+                          {maskNumber(number, 6, 4)}
+                        </dd>
+                      </div>
+                      <div className="bank-row">
+                        <dt className="bank-key">Currency</dt>
+                        <dd className="bank-value">{currency}</dd>
+                      </div>
+                    </dl>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <PaymentFallback>
+                <strong>Card details on request.</strong> Our international VISA
+                receiving cards are shared together with your invoice after the
+                amount is confirmed — use the official contact form to request
+                them.
+              </PaymentFallback>
+            )}
           </div>
         </section>
 
@@ -944,35 +912,44 @@ export function PaymentsPage() {
                 invoice reference in the deposit narration.
               </p>
             </div>
-            <div className="payment-grid account-grid">
-              {localBankAccounts.map(({ holder, bank, account, branch }) => (
-                <article className="detail-card account-card" key={account}>
-                  <div className="account-card-head">
-                    <h3>{bank}</h3>
-                    <PaymentQr
-                      value={`Bank transfer \u2014 FinelyBD\nBank: ${bank}\nAccount: ${account}\nAccount holder: ${holder}\nBranch: ${branch}`}
-                      label={`${bank} payment QR code`}
-                    />
-                  </div>
-                  <dl className="bank-rows">
-                    <div className="bank-row">
-                      <dt className="bank-key">Account holder</dt>
-                      <dd className="bank-value">{holder}</dd>
+            {paymentSecrets && paymentSecrets.banks.length > 0 ? (
+              <div className="payment-grid account-grid">
+                {paymentSecrets.banks.map(({ holder, bank, account, branch }) => (
+                  <article className="detail-card account-card" key={account}>
+                    <div className="account-card-head">
+                      <h3>{bank}</h3>
+                      <PaymentQr
+                        value={`Bank transfer \u2014 FinelyBD\nBank: ${bank}\nAccount: ${account}\nAccount holder: ${holder}\nBranch: ${branch}`}
+                        label={`${bank} payment QR code`}
+                      />
                     </div>
-                    <div className="bank-row">
-                      <dt className="bank-key">Account number</dt>
-                      <dd className="bank-value">
-                        {maskNumber(account, 4, 3)}
-                      </dd>
-                    </div>
-                    <div className="bank-row">
-                      <dt className="bank-key">Branch</dt>
-                      <dd className="bank-value">{branch}</dd>
-                    </div>
-                  </dl>
-                </article>
-              ))}
-            </div>
+                    <dl className="bank-rows">
+                      <div className="bank-row">
+                        <dt className="bank-key">Account holder</dt>
+                        <dd className="bank-value">{holder}</dd>
+                      </div>
+                      <div className="bank-row">
+                        <dt className="bank-key">Account number</dt>
+                        <dd className="bank-value">
+                          {maskNumber(account, 4, 3)}
+                        </dd>
+                      </div>
+                      <div className="bank-row">
+                        <dt className="bank-key">Branch</dt>
+                        <dd className="bank-value">{branch}</dd>
+                      </div>
+                    </dl>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <PaymentFallback>
+                <strong>Bank details on request.</strong> Our BDT collection
+                accounts are shared once your invoice is issued, so every
+                transfer can be matched to its reference. Use the official
+                contact form to request account details.
+              </PaymentFallback>
+            )}
           </div>
         </section>
 
@@ -995,27 +972,44 @@ export function PaymentsPage() {
                 quotation.
               </p>
             </div>
-            <div className="detail-card usd-card">
-              <div className="account-card-head">
-                <h3>JP Morgan Chase NA</h3>
-                <PaymentQr
-                  value={`USD wire transfer \u2014 FinelyBD\nBank: JP Morgan Chase NA\nAccount: 30000005322271\nAccount holder: S M MOHIDUL ISLAM\nRouting: 028000024`}
-                  label="USD bank transfer QR code"
-                />
-              </div>
-              <dl className="bank-rows">
-                {usdAccount.map(([label, value]) => (
-                  <div className="bank-row" key={label}>
-                    <dt className="bank-key">{label}</dt>
+            {paymentSecrets?.usd ? (
+              <div className="detail-card usd-card">
+                <div className="account-card-head">
+                  <h3>{paymentSecrets.usd.bank}</h3>
+                  <PaymentQr
+                    value={`USD wire transfer \u2014 FinelyBD\nBank: ${paymentSecrets.usd.bank}\nAccount: ${paymentSecrets.usd.account}\nAccount holder: ${paymentSecrets.usd.holder}\nRouting: ${paymentSecrets.usd.routing}`}
+                    label="USD bank transfer QR code"
+                  />
+                </div>
+                <dl className="bank-rows">
+                  <div className="bank-row">
+                    <dt className="bank-key">Account holder</dt>
+                    <dd className="bank-value">{paymentSecrets.usd.holder}</dd>
+                  </div>
+                  <div className="bank-row">
+                    <dt className="bank-key">Account number</dt>
                     <dd className="bank-value">
-                      {label === "Account number"
-                        ? maskNumber(value, 4, 3)
-                        : value}
+                      {maskNumber(paymentSecrets.usd.account, 4, 3)}
                     </dd>
                   </div>
-                ))}
-              </dl>
-            </div>
+                  <div className="bank-row">
+                    <dt className="bank-key">Routing number</dt>
+                    <dd className="bank-value">{paymentSecrets.usd.routing}</dd>
+                  </div>
+                  <div className="bank-row">
+                    <dt className="bank-key">Beneficiary address</dt>
+                    <dd className="bank-value">{paymentSecrets.usd.address}</dd>
+                  </div>
+                </dl>
+              </div>
+            ) : (
+              <PaymentFallback>
+                <strong>USD wire details on request.</strong> For international
+                payments we share the beneficiary, account and routing details
+                with your quotation, so your bank can process the transfer
+                without errors.
+              </PaymentFallback>
+            )}
             <div className="notice payment-notice">
               <LockKeyhole size={17} />
               <p>
