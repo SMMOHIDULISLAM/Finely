@@ -12,7 +12,11 @@ export type KnowledgeEntry = {
 export const assistantIdentity =
   "You are the FinelyBD assistant, a guide for visitors of the FinelyBD website " +
   "(finelybd.com). FinelyBD is an AI-solutions firm: AI for a Better Humanity — " +
-  "every service is delivered with AI. It develops and deploys AI agents and AI " +
+  "every service is delivered with AI. The firm is organized into five " +
+  "divisions: AI & Digital Technology; Finance, Banking & Tax; Construction " +
+  "& Real Estate; Business & Corporate; and People, Talent & Events — 27 " +
+  "services in all, each with its own page under Services. It develops and " +
+  "deploys AI agents and AI " +
   "business solutions for local and foreign clients under corporate agreements; " +
   "for large or complicated engagements it onboards specialist experts case by " +
   "case from its freelancer and expert network. Its training & development wing, " +
@@ -60,7 +64,22 @@ export const knowledgeBase: KnowledgeEntry[] = [
   {
     keywords: ["service", "offer", "do you do", "what does", "help with", "solution", "consult", "advice", "advisory"],
     answer:
-      "Everything FinelyBD serves, it serves with AI. The firm develops and deploys AI agents and AI business solutions; takes on corporate agreements and foreign clients' AI projects of any size or complexity, onboarding specialist experts from its freelancer and expert network case by case; and runs a training & development wing that builds easy-to-learn AI, ML and AI-agent courses sold to corporate clients. Its core disciplines are: (1) business workflow automation and operational structuring; (2) accounting ledger architecture, audit reconciliation and reporting; (3) quantitative cash-flow forecasting, macroeconomic stress modeling and liquidity optimization; and (4) banking payment ecosystems — MFS, NPSB, RTGS and Cards — with compliance alignment and commercial banking facilitation. See the Services page for details, and use the contact form to discuss your project.",
+      "FinelyBD is organized into five divisions with 27 services, each with its own page under Services. AI & Digital Technology: AI agent development & deployment, government IT project bidding, online marketing solutions, and AI/ML training courses. Finance, Banking & Tax: financial advisory, banking facilitation, digital financial services (wallet, savings & payments for the non-bank community), balance sheet preparation, VAT & tax by licensed professionals, accounting, accounting software setup, and digital-bank community partnership. Construction & Real Estate: construction consultancy, renovation & building design, skyscraper & high-rise contracts, property management, land buy-sell agency, land development, industrial setup & machinery, and land identification & survey. Business & Corporate: business intelligence, corporate & international delivery, and business consultancy. People, Talent & Events: a freelance work marketplace, HR outsourcing for MNCs & remote teams, seminars & conferences, and training operations. Every service page shows examples, commitments and capabilities — use the contact form to discuss your project.",
+  },
+  {
+    keywords: ["construction", "building", "renovation", "skyscraper", "high-rise", "property", "land", "plot", "survey", "factory", "machinery", "industrial", "real estate", "developer"],
+    answer:
+      "FinelyBD's Construction & Real Estate division covers eight services, each with its own page: construction consultancy, renovation & building design, skyscraper & high-rise contracts, property management, land buy & sell agency, land development, industrial preparation & machinery setup, and land identification & survey. The division is steered by Adnan Sakib (Director & Head of Consultancy for Architecture and Building Construction, BSc Civil Engineering, MSc Data Science) and backed by the legal advisory panel of Md Assaduzzaman Khan for land and real-estate litigation. Use the contact form to discuss a project.",
+  },
+  {
+    keywords: ["tax", "vat", "nbr", "balance sheet", "financial statement", "accounts", "bookkeeping", "payroll", "audit"],
+    answer:
+      "FinelyBD's Finance, Banking & Tax division handles balance sheet preparation (BFRS-compliant), VAT & tax preparation signed off by licensed practitioners, bookkeeping & accounting, accounting software setup, financial advisory, banking facilitation, digital financial services for the non-bank community, and digital-bank community partnerships. VAT, tax and financial-statement work is supervised by licensed attorneys and tax practitioners, with full representation during NBR queries. See the Services page for each service's own page.",
+  },
+  {
+    keywords: ["freelance", "marketplace", "outsource", "recruit", "hiring", "staffing", "event", "conference", "seminar", "workshop"],
+    answer:
+      "FinelyBD's People, Talent & Events division runs a curated freelance work marketplace with verified talent, contracts and escrowed payments; HR outsourcing and employer-of-record services for multinationals building remote teams in Bangladesh; full organization of seminars and conferences; and end-to-end training operations with assessment and certification.",
   },
   {
     keywords: ["pay", "payment", "bkash", "bikash", "rocket", "nagad", "upay", "bank", "transfer", "usd", "visa", "card", "invoice", "fee", "charge"],

@@ -2738,3 +2738,470 @@ h2 span,
 .page-hero::after {
   background: linear-gradient(100deg, rgba(6, 10, 26, 0.82) 20%, rgba(6, 10, 26, 0.35) 70%, rgba(6, 10, 26, 0.15));
 }
+
+
+/* ═══ Services catalog: divisions hub + service detail pages ═══ */
+.icon-box.amber {
+  background: rgba(245, 158, 11, 0.14);
+  color: #f59e0b;
+}
+.icon-box.rose {
+  background: rgba(244, 63, 94, 0.14);
+  color: #f43f5e;
+}
+.icon-box.orange {
+  background: rgba(249, 115, 22, 0.14);
+  color: #f97316;
+}
+.icon-box.xl {
+  width: 74px;
+  height: 74px;
+  border-radius: 20px;
+  flex: none;
+}
+.eyebrow.light {
+  color: #a5f3fc;
+}
+
+/* Division navigation strip on the hub */
+.division-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 26px;
+}
+.svc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.08);
+  color: #c7d2fe;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+a.svc-chip:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Division cards on the home page */
+.divisions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.division-card {
+  position: relative;
+  display: block;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 340px;
+  isolation: isolate;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.division-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px -18px rgba(2, 6, 23, 0.65);
+}
+.division-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform 0.5s ease;
+}
+.division-card:hover img {
+  transform: scale(1.05);
+}
+.division-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(6, 10, 26, 0.15) 30%, rgba(6, 10, 26, 0.88) 78%);
+}
+.division-card-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px;
+  color: #f1f5f9;
+}
+.division-count {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+  background: rgba(8, 145, 178, 0.25);
+  border: 1px solid rgba(165, 243, 252, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.division-card-body h3 {
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+.division-card-body p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+/* All-services strip on home */
+.svc-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+/* Category bands on the services hub */
+.cat-band {
+  position: relative;
+  padding: 84px 0 72px;
+  isolation: isolate;
+  overflow: hidden;
+}
+.cat-band-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+.cat-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(4, 8, 22, 0.9) 0%, rgba(4, 8, 22, 0.82) 55%, rgba(4, 8, 22, 0.94) 100%);
+}
+.cat-band-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cat-band-head h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  margin: 8px 0 6px;
+}
+.cat-tagline {
+  font-size: 17px;
+  color: #a5f3fc;
+  font-weight: 600;
+  margin: 0;
+}
+.cat-count {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+  border: 1px solid rgba(226, 232, 240, 0.3);
+  padding: 7px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cat-description {
+  max-width: 760px;
+  color: #cbd5e1;
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 18px 0 30px;
+}
+
+/* Service cards inside a band */
+.cat-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  color: #e2e8f0;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.55);
+  background: rgba(30, 27, 75, 0.55);
+}
+.svc-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.svc-card h3 {
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: #f8fafc;
+}
+.svc-card p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #94a3b8;
+  margin: 0 0 14px;
+  flex: 1;
+}
+.svc-card .service-card-link {
+  color: #a5b4fc;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+/* Service detail page hero */
+.svc-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.svc-hero-overlay {
+  background: linear-gradient(100deg, rgba(5, 9, 24, 0.92) 15%, rgba(5, 9, 24, 0.62) 60%, rgba(5, 9, 24, 0.45));
+  padding: 120px 0 64px;
+}
+.svc-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 26px;
+}
+.svc-breadcrumb a {
+  color: #a5b4fc;
+}
+.svc-breadcrumb a:hover {
+  color: #c7d2fe;
+}
+.svc-hero-title {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.svc-hero-title h1 {
+  font-size: clamp(30px, 4.6vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  margin: 6px 0 4px;
+  line-height: 1.08;
+}
+.svc-tagline {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #cbd5e1;
+  margin: 0;
+  font-weight: 550;
+}
+
+/* Service detail body */
+.svc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.svc-description {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #334155;
+  margin: 14px 0 34px;
+  max-width: 70ch;
+}
+.svc-subheading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  margin: 30px 0 16px;
+}
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.example-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #334155;
+}
+.example-item svg {
+  flex: none;
+  margin-top: 2px;
+  color: #4f46e5;
+}
+.cap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.cap-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 550;
+  color: #1e293b;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 11px 14px;
+}
+.cap-list li svg {
+  color: #059669;
+  flex: none;
+}
+
+/* Commitments aside */
+.svc-aside {
+  position: sticky;
+  top: 96px;
+}
+.commit-card {
+  background: linear-gradient(160deg, #0b1226 0%, #1e1b4b 100%);
+  color: #e2e8f0;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 24px 50px -20px rgba(2, 6, 23, 0.55);
+}
+.commit-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  font-weight: 750;
+  color: #f8fafc;
+  margin: 0 0 14px;
+}
+.commit-card h3 svg {
+  color: #34d399;
+}
+.commit-card ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+}
+.commit-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+.commit-card li svg {
+  flex: none;
+  margin-top: 3px;
+  color: #34d399;
+}
+.btn-block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.commit-card .small-note {
+  margin: 12px 0 0;
+  color: #94a3b8;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* Prev / next service navigation */
+.svc-more {
+  padding-top: 0;
+}
+.svc-more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+.svc-more-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #0f172a;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.svc-more-card:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.svc-more-card:hover {
+  border-color: #4f46e5;
+  background: #eef2ff;
+}
+.svc-more-card strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+.svc-more-card svg {
+  color: #4f46e5;
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .svc-layout {
+    grid-template-columns: 1fr;
+  }
+  .svc-aside {
+    position: static;
+  }
+  .svc-more-grid {
+    grid-template-columns: 1fr;
+  }
+  .svc-hero-title {
+    gap: 16px;
+  }
+}

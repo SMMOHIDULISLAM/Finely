@@ -6,6 +6,9 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import {
   ServicesPage,
+  ServiceDetailPage,
+} from "./pages/ServicePages";
+import {
   AboutPage,
   ContactPage,
   PortalPage,
@@ -26,6 +29,7 @@ export default function App() {
           <Route path="/" component={Home} />
           <Route path="/index.html" component={Home} />
           <Route path="/services" component={ServicesPage} />
+          <Route path="/services/:id" component={ServiceDetailPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/contact.html" component={ContactPage} />

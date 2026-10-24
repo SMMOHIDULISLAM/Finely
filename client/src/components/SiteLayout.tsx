@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { assets } from "@/data/brand";
+import { getService } from "@/data/serviceCatalog";
 
 const pathAliases: Record<string, string> = {
   "/index.html": "/",
@@ -198,14 +199,19 @@ export function RouteEffects() {
   useEffect(() => {
     const titles: Record<string, string> = {
       "/": "AI for a Better Humanity",
-      "/services": "Our Advisory Services",
+      "/services": "Our Services",
       "/about": "About Us & Leadership",
       "/contact": "Let’s Talk",
       "/portal": "Client & Staff Portal",
       "/mobile-app": "FinelyBD on Mobile",
       "/payments": "Payment Information",
     };
-    document.title = `FinelyBD — ${titles[pathAliases[location] || location] || "AI for a Better Humanity"}`;
+    let pageTitle: string | undefined = titles[pathAliases[location] || location];
+    if (!pageTitle && location.startsWith("/services/")) {
+      const service = getService(location.split("/")[2]);
+      pageTitle = service ? service.title : undefined;
+    }
+    document.title = `FinelyBD — ${pageTitle || "AI for a Better Humanity"}`;
     const hash = window.location.hash;
     if (hash)
       requestAnimationFrame(() =>

@@ -1,12 +1,4 @@
-import {
-  Bot,
-  BriefcaseBusiness,
-  Calculator,
-  ChartNoAxesCombined,
-  Globe2,
-  GraduationCap,
-  Landmark,
-} from "lucide-react";
+import { allServices } from "./serviceCatalog";
 
 const portable = import.meta.env.VITE_PORTABLE_ASSETS === "true";
 export const assets = {
@@ -24,127 +16,19 @@ export const assets = {
     : "/manus-storage/solutions-city_baa340b3.webp",
 };
 
-export const services = [
-  {
-    id: "business",
-    number: "01",
-    icon: BriefcaseBusiness,
-    color: "blue",
-    title: "Business, made smarter.",
-    label: "Business intelligence",
-    description:
-      "Less operational friction. More room to grow. Turn your workflows and business data into a clearer path forward.",
-    detail:
-      "Workflow automation, strategic operational structuring, and data-driven management frameworks designed around the way your business works.",
-    capabilities: [
-      "Workflow automation",
-      "Operational strategy",
-      "Data-driven management",
-    ],
-  },
-  {
-    id: "accounting",
-    number: "02",
-    icon: Calculator,
-    color: "green",
-    title: "Accounting, simplified.",
-    label: "Accounting & reporting",
-    description:
-      "Bring clarity to your numbers with structured records, reconciled accounts, and reporting you can act on.",
-    detail:
-      "Structured ledger architecture, audit trail reconciliation, and reporting clarity to turn regulatory compliance into actionable insights.",
-    capabilities: [
-      "Ledger architecture",
-      "Audit trail reconciliation",
-      "Reporting clarity",
-    ],
-  },
-  {
-    id: "finance",
-    number: "03",
-    icon: ChartNoAxesCombined,
-    color: "violet",
-    title: "Finance, with foresight.",
-    label: "Financial advisory",
-    description:
-      "Plan beyond the next quarter. Understand cash flow, navigate uncertainty, and make better-informed financial decisions.",
-    detail:
-      "Quantitative cash-flow forecasting, macroeconomic stress modeling, and liquidity optimization based on empirical time-series methods.",
-    capabilities: [
-      "Cash-flow forecasting",
-      "Stress modeling",
-      "Liquidity optimization",
-    ],
-  },
-  {
-    id: "banking",
-    number: "04",
-    icon: Landmark,
-    color: "teal",
-    title: "Banking, connected.",
-    label: "Banking facilitation",
-    description:
-      "Connect business needs with banking expertise, payment channels, and a thoughtful approach to compliance.",
-    detail:
-      "Payment ecosystem channel architecture for MFS, NPSB, RTGS and Cards, central bank compliance alignment, and commercial banking facilitation.",
-    capabilities: [
-      "Payment channel architecture",
-      "Compliance alignment",
-      "Commercial banking facilitation",
-    ],
-  },
-  {
-    id: "ai-agents",
-    number: "05",
-    icon: Bot,
-    color: "indigo",
-    title: "AI agents, built and deployed.",
-    label: "AI agent development & deployment",
-    description:
-      "Autonomous AI agents that work for your business — designed, built, deployed and maintained by our team, end to end.",
-    detail:
-      "Custom AI agent development and deployment for business operations: conversational agents, workflow automations and decision-support systems — engineered, hosted and improved under corporate agreement.",
-    capabilities: [
-      "Custom AI agent development",
-      "Deployment & hosting",
-      "Ongoing improvement",
-    ],
-  },
-  {
-    id: "corporate-global",
-    number: "06",
-    icon: Globe2,
-    color: "cyan",
-    title: "Corporate and global delivery.",
-    label: "Corporate & international AI solutions",
-    description:
-      "Serving companies at home and abroad — from corporate agreements to complex international AI projects, delivered through our expert network.",
-    detail:
-      "AI-based solutions for corporate clients and foreign companies, however large or complicated. We hire and onboard case-to-case domain experts — a built-in freelancer and expert platform — so every assignment is matched with the right team.",
-    capabilities: [
-      "Corporate agreements",
-      "International project delivery",
-      "Case-to-case expert network",
-    ],
-  },
-  {
-    id: "academy",
-    number: "07",
-    icon: GraduationCap,
-    color: "violet",
-    title: "AI skills, taught simply.",
-    label: "Training & development",
-    description:
-      "Easy, practical courses on AI, machine learning and AI agent development — built for corporate teams and the professionals who run them.",
-    detail:
-      "A training and development wing led by Md Ashakur Rahman: accessible courses on AI/ML and AI agent development, developed in-house and delivered or licensed to corporate clients to upskill their teams.",
-    capabilities: [
-      "AI/ML courses for corporates",
-      "AI agent development training",
-      "Corporate licensing",
-    ],
-  },
-];
+// Legacy shape consumed by the contact form and shared components —
+// now derived from the full service catalog so both never drift apart.
+export const services = allServices.map(service => ({
+  id: service.id,
+  number: service.number,
+  icon: service.icon,
+  color: service.color,
+  title: service.title,
+  label: service.label,
+  description: service.tagline,
+  detail: service.description,
+  capabilities: service.capabilities,
+}));
 
 export const leaders = [
   {

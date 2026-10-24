@@ -12,7 +12,12 @@ import {
   UsersRound,
 } from "lucide-react";
 import { Link } from "wouter";
-import { assets, services } from "@/data/brand";
+import { assets } from "@/data/brand";
+import {
+  allServices,
+  serviceCategories,
+  servicesByCategory,
+} from "@/data/serviceCatalog";
 import WeatherStrip from "@/components/WeatherStrip";
 
 export default function Home() {
@@ -116,40 +121,57 @@ export default function Home() {
                 <i /> WHAT WE DO
               </span>
               <h2>
-                Complex challenges.
+                Five divisions.
                 <br />
-                <span className="muted-heading">Clearer solutions.</span>
+                <span className="muted-heading">Twenty-seven ways we help.</span>
               </h2>
             </div>
             <div className="heading-aside">
               <p>
-                Four connected disciplines. One thoughtful approach to helping
-                your business thrive.
+                From AI agents to skyscraper contracts — one multifunctional
+                firm, so whatever your ambition, there is a desk here that
+                handles it.
               </p>
               <Link href="/services" className="text-link">
                 Explore all services <ArrowUpRight size={17} />
               </Link>
             </div>
           </div>
-          <div className="services-grid">
-            {services.map(service => (
+          <div className="divisions-grid">
+            {serviceCategories.map(category => (
+              <Link
+                key={category.id}
+                href={`/services#${category.id}`}
+                className="division-card"
+              >
+                <img
+                  src={category.image}
+                  alt=""
+                  loading="lazy"
+                  width="2048"
+                  height="1152"
+                />
+                <div className="division-card-body">
+                  <span className="division-count">
+                    {servicesByCategory(category.id).length} services
+                  </span>
+                  <h3>{category.title}</h3>
+                  <p>{category.tagline}</p>
+                  <span className="service-card-link">
+                    Explore division <ArrowUpRight size={16} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="svc-strip" aria-label="All services">
+            {allServices.map(service => (
               <Link
                 key={service.id}
-                href={`/services#${service.id}`}
-                className={`service-card ${service.color}`}
+                href={`/services/${service.id}`}
+                className="svc-chip"
               >
-                <div className="service-card-top">
-                  <span className={`icon-box ${service.color}`}>
-                    <service.icon size={23} strokeWidth={1.7} />
-                  </span>
-                  <span className="service-number">{service.number}</span>
-                </div>
-                <span className="service-label">{service.label}</span>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <span className="service-card-link">
-                  Discover more <ArrowUpRight size={17} />
-                </span>
+                {service.label}
               </Link>
             ))}
           </div>
