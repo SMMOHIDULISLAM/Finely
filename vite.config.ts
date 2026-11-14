@@ -1,9 +1,10 @@
+import { publicPaymentRecipients } from "./build-support/paymentRecipients";
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
-import { defineConfig, type Plugin, type ViteDevServer } from "vite";
+import { defineConfig, loadEnv, type Plugin, type ViteDevServer } from "vite";
 import { publicPlatformScript } from "./server/_core/publicConfig";
 
 // =============================================================================
@@ -62,7 +63,7 @@ function writeToLogFile(source: LogSource, entries: unknown[]) {
   const logPath = path.join(LOG_DIR, `${source}.log`);
 
   // Format entries with timestamps
-  const lines = entries.map((entry) => {
+  const lines = entries.map(entry => {
     const ts = new Date().toISOString();
     return `[${ts}] ${JSON.stringify(entry)}`;
   });
@@ -137,7 +138,7 @@ function vitePluginManusDebugCollector(): Plugin {
         }
 
         let body = "";
-        req.on("data", (chunk) => {
+        req.on("data", chunk => {
           body += chunk.toString();
         });
 
@@ -169,14 +170,29 @@ function vitePluginPublicPlatformConfig(): Plugin {
       });
     },
     generateBundle() {
-      this.emitFile({ type: "asset", fileName: "api/platform/config.js", source: publicPlatformScript() });
+      this.emitFile({
+        type: "asset",
+        fileName: "api/platform/config.js",
+        source: publicPlatformScript(),
+      });
     },
   };
 }
 
-const plugins = [vitePluginPublicPlatformConfig(), react(), tailwindcss(), jsxLocPlugin(), vitePluginManusDebugCollector()];
+const plugins = [
+  vitePluginPublicPlatformConfig(),
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginManusDebugCollector(),
+];
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  define: {
+    "import.meta.env.VITE_PAYMENT_SECRETS": JSON.stringify(
+      publicPaymentRecipients(loadEnv(mode, PROJECT_ROOT).VITE_PAYMENT_SECRETS)
+    ),
+  },
   plugins,
   resolve: {
     alias: {
@@ -208,4 +224,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));
