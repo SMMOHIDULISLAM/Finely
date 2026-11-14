@@ -1,23 +1,8 @@
-/**
- * Payment destination secrets.
- *
- * Full MFS / bank / card numbers are NOT stored in this repository. They are
- * provided at build time through the VITE_PAYMENT_SECRETS environment
- * variable (a JSON object, set in the Netlify site's environment settings),
- * baked into the production bundle, and never written to source control.
- *
- * If the variable is missing or malformed (local dev, forks, previews),
- * `paymentSecrets` is null and the Payments page renders a graceful
- * "details on request" state instead of the QR codes.
- *
- * Shape:
- * {
- *   "mfs":   [{ "name": "bKash", "numbers": ["01XXXXXXXXX"] }],
- *   "cards": [{ "network": "VISA", "number": "...", "currency": "..." }],
- *   "banks": [{ "holder": "...", "bank": "...", "account": "...", "branch": "..." }],
- *   "usd":   { "holder": "...", "bank": "...", "account": "...",
- *              "routing": "...", "address": "..." }
- * }
+/** Public recipient details, not secrets. Vite filters VITE_PAYMENT_SECRETS
+ * to allowed MFS and JPMorgan recipients before embedding it in browser assets.
+ * QR payloads can be read by every visitor. Card numbers and disabled local bank
+ * destinations are excluded from the build. Missing configuration shows the
+ * invoice-request fallback. Never put passwords, PINs, CVV or API keys here.
  */
 
 export type MfsSecret = { name: string; numbers: string[] };
@@ -44,7 +29,7 @@ export type PaymentSecrets = {
   mfs: MfsSecret[];
   cards: CardSecret[];
   banks: BankSecret[];
-  usd: UsdSecret;
+  usd: UsdSecret | null;
 };
 
 function isStringArray(value: unknown): value is string[] {
@@ -97,7 +82,7 @@ function parseSecrets(raw: unknown): PaymentSecrets | null {
           }
         : null;
     if (!mfs.length && !cards.length && !banks.length && !usd) return null;
-    return { mfs, cards, banks, usd: usd! };
+    return { mfs, cards, banks, usd };
   } catch {
     return null;
   }

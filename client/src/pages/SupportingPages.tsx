@@ -1,3 +1,4 @@
+import PricingSection from "@/components/PricingSection";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "wouter";
 import QRCode from "qrcode";
@@ -338,7 +339,7 @@ export function ContactPage() {
               <div className="direct-contact">
                 <h3>Email us</h3>
                 <ul className="contact-channels">
-                  {contactEmails.map((email) => (
+                  {contactEmails.map(email => (
                     <li key={email}>
                       <a href={`mailto:${email}`}>{email}</a>
                     </li>
@@ -346,7 +347,7 @@ export function ContactPage() {
                 </ul>
                 <h3>Call or message</h3>
                 <ul className="contact-channels">
-                  {contactPhones.map((phone) => (
+                  {contactPhones.map(phone => (
                     <li key={phone}>
                       <a href={`tel:${phone.replace(/\s/g, "")}`}>{phone}</a>
                     </li>
@@ -597,9 +598,9 @@ export function PortalPage() {
               </h2>
               <p>
                 Customers, staff, and administrators will each sign in through
-                the same window and land in a workspace shaped to their role.
-                No role can be activated from this preview — accounts are
-                created by FinelyBD when the portal launches.
+                the same window and land in a workspace shaped to their role. No
+                role can be activated from this preview — accounts are created
+                by FinelyBD when the portal launches.
               </p>
               <ul className="portal-role-list">
                 {(Object.keys(portalModes) as PortalMode[]).map(item => {
@@ -642,7 +643,10 @@ export function PortalPage() {
                   </button>
                 ))}
               </div>
-              <form className="inquiry-form portal-login-form" onSubmit={handleLogin}>
+              <form
+                className="inquiry-form portal-login-form"
+                onSubmit={handleLogin}
+              >
                 <div className="field">
                   <label htmlFor="portal-user">
                     {mode} ID <span aria-hidden="true">*</span>
@@ -653,7 +657,7 @@ export function PortalPage() {
                     type="text"
                     autoComplete="username"
                     value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
+                    onChange={e => setUserId(e.target.value)}
                     required
                   />
                 </div>
@@ -667,7 +671,7 @@ export function PortalPage() {
                     type="password"
                     autoComplete="current-password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -715,7 +719,7 @@ function PaymentQr({ value, label }: { value: string; label: string }) {
       errorCorrectionLevel: "M",
       color: { dark: "#173b3a", light: "#ffffff" },
     })
-      .then((url) => {
+      .then(url => {
         if (alive) setSrc(url);
       })
       .catch(() => {
@@ -748,7 +752,9 @@ function PaymentFallback({ children }: { children: ReactNode }) {
   return (
     <div className="notice payment-notice">
       <LockKeyhole size={17} />
-      <p>{children}</p>
+      <p>
+        {children} <Link href="/contact">Request payment instructions →</Link>
+      </p>
     </div>
   );
 }
@@ -765,8 +771,9 @@ export function PaymentsPage() {
             <span>to pay FinelyBD.</span>
           </>
         }
-        intro="FinelyBD accepts payments through Bangladesh's leading mobile financial services and USD bank transfer. Please confirm the payable amount and reference with us before sending any payment."
+        intro="Personal MFS accounts, cards and JPMorgan Chase are the retained payment options. Request an invoice and confirm the amount, VAT and payment instructions before paying. This page does not process or verify payments."
       />
+      <PricingSection />
       <div className="supporting-content">
         <section
           className="section content-section"
@@ -778,15 +785,13 @@ export function PaymentsPage() {
                 <span className="eyebrow">
                   <i /> MOBILE FINANCIAL SERVICES
                 </span>
-                <h2 id="mfs-heading">Pay from any MFS wallet.</h2>
+                <h2 id="mfs-heading">Personal MFS accounts.</h2>
               </div>
               <p>
-                These are personal FinelyBD wallets enabled for Cash In,
-                Bank Top-up, and Send Money only — and they can receive
-                foreign currencies too. For security, full numbers are never
-                shown on this page: scan the QR code with your MFS app to
-                complete the payment, then share the transaction ID through
-                the official contact form.
+                Confirm the recipient, supported transfer method and invoice
+                reference with FinelyBD before sending money. Any QR shown here
+                contains recipient information; it is not a verified in-app
+                payment checkout.
               </p>
             </div>
             <div className="payment-grid">
@@ -814,7 +819,7 @@ export function PaymentsPage() {
                           ))}
                         </ul>
                         <span className="small-note">
-                          Cash In &middot; Bank Top-up &middot; Send Money
+                          Confirm the supported transfer method with FinelyBD
                         </span>
                       </>
                     ) : (
@@ -837,119 +842,31 @@ export function PaymentsPage() {
           <div className="wrap">
             <div className="section-heading">
               <div>
-                <span className="eyebrow">
-                  <i /> CARD PAYMENT
-                </span>
-                <h2 id="card-heading">Pay by international card.</h2>
+                <span className="eyebrow">CARD PAYMENT</span>
+                <h2 id="card-heading">Card payment instructions.</h2>
               </div>
               <p>
-                For payments in international currency, you can transfer to the
-                FinelyBD VISA card below. Please confirm the payable amount
-                with us first and share the transfer receipt afterwards.
+                Cards are retained as an invoice-based option. Request the
+                approved payment link or transfer instructions from FinelyBD.
+                Online card checkout is not connected on this page.
               </p>
             </div>
-            {paymentSecrets && paymentSecrets.cards.length > 0 ? (
-              <div className="payment-grid account-grid">
-                {paymentSecrets.cards.map(({ network, number, currency }) => (
-                  <article
-                    className="detail-card card-payment-card"
-                    key={number}
-                  >
-                    <div className="card-payment-head">
-                      <div className="card-payment-title">
-                        <CreditCard size={23} />
-                        <h3>{network}</h3>
-                      </div>
-                      <PaymentQr
-                        value={`VISA card payment \u2014 FinelyBD: ${number}`}
-                        label={`${network} payment QR code`}
-                      />
-                    </div>
-                    <dl className="bank-rows">
-                      <div className="bank-row">
-                        <dt className="bank-key">Card number</dt>
-                        <dd className="bank-value">
-                          {maskNumber(number, 6, 4)}
-                        </dd>
-                      </div>
-                      <div className="bank-row">
-                        <dt className="bank-key">Currency</dt>
-                        <dd className="bank-value">{currency}</dd>
-                      </div>
-                    </dl>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <PaymentFallback>
-                <strong>Card details on request.</strong> Our international VISA
-                receiving cards are shared together with your invoice after the
-                amount is confirmed — use the official contact form to request
-                them.
-              </PaymentFallback>
-            )}
+            <PaymentFallback>
+              <strong>Request instructions with your invoice.</strong> Do not
+              submit card numbers, CVV codes or one-time passwords through the
+              contact form.
+            </PaymentFallback>
           </div>
         </section>
 
-        <section
-          className="section content-section"
-          aria-labelledby="local-bank-heading"
-        >
+        <section className="section content-section ph-disabled">
           <div className="wrap">
-            <div className="section-heading">
-              <div>
-                <span className="eyebrow">
-                  <i /> LOCAL BANK TRANSFER
-                </span>
-                <h2 id="local-bank-heading">Pay directly to our banks.</h2>
-              </div>
-              <p>
-                Clients in Bangladesh can pay in BDT directly to any of the
-                accounts below through mobile banking apps, internet banking,
-                or branch deposit. Full account numbers are intentionally
-                hidden here — confirm the complete details through the
-                official contact form before your first payment, and use your
-                invoice reference in the deposit narration.
-              </p>
-            </div>
-            {paymentSecrets && paymentSecrets.banks.length > 0 ? (
-              <div className="payment-grid account-grid">
-                {paymentSecrets.banks.map(({ holder, bank, account, branch }) => (
-                  <article className="detail-card account-card" key={account}>
-                    <div className="account-card-head">
-                      <h3>{bank}</h3>
-                      <PaymentQr
-                        value={`Bank transfer \u2014 FinelyBD\nBank: ${bank}\nAccount: ${account}\nAccount holder: ${holder}\nBranch: ${branch}`}
-                        label={`${bank} payment QR code`}
-                      />
-                    </div>
-                    <dl className="bank-rows">
-                      <div className="bank-row">
-                        <dt className="bank-key">Account holder</dt>
-                        <dd className="bank-value">{holder}</dd>
-                      </div>
-                      <div className="bank-row">
-                        <dt className="bank-key">Account number</dt>
-                        <dd className="bank-value">
-                          {maskNumber(account, 4, 3)}
-                        </dd>
-                      </div>
-                      <div className="bank-row">
-                        <dt className="bank-key">Branch</dt>
-                        <dd className="bank-value">{branch}</dd>
-                      </div>
-                    </dl>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <PaymentFallback>
-                <strong>Bank details on request.</strong> Our BDT collection
-                accounts are shared once your invoice is issued, so every
-                transfer can be matched to its reference. Use the official
-                contact form to request account details.
-              </PaymentFallback>
-            )}
+            <h2>Other payment methods</h2>
+            <p>
+              Local bank transfers and all methods other than personal MFS,
+              cards and JPMorgan Chase are disabled.
+            </p>
+            <button disabled>Disabled</button>
           </div>
         </section>
 
@@ -963,7 +880,7 @@ export function PaymentsPage() {
                 <span className="eyebrow">
                   <i /> USD BANK TRANSFER
                 </span>
-                <h2 id="bank-heading">For international payments.</h2>
+                <h2 id="bank-heading">JPMorgan Chase transfers.</h2>
               </div>
               <p>
                 Clients outside Bangladesh can settle fees in USD by wire
@@ -972,7 +889,8 @@ export function PaymentsPage() {
                 quotation.
               </p>
             </div>
-            {paymentSecrets?.usd ? (
+            {paymentSecrets?.usd &&
+            /j\.?\s*p\.?\s*morgan|chase/i.test(paymentSecrets.usd.bank) ? (
               <div className="detail-card usd-card">
                 <div className="account-card-head">
                   <h3>{paymentSecrets.usd.bank}</h3>
@@ -1004,20 +922,20 @@ export function PaymentsPage() {
               </div>
             ) : (
               <PaymentFallback>
-                <strong>USD wire details on request.</strong> For international
-                payments we share the beneficiary, account and routing details
-                with your quotation, so your bank can process the transfer
-                without errors.
+                <strong>JPMorgan Chase details on request.</strong> For
+                international payments we share the beneficiary, account and
+                routing details with your quotation, so your bank can process
+                the transfer without errors.
               </PaymentFallback>
             )}
             <div className="notice payment-notice">
               <LockKeyhole size={17} />
               <p>
                 <strong>Stay safe when paying.</strong> FinelyBD never asks for
-                your MFS PIN, wallet password, or card credentials, and never
-                displays its own account numbers in full on this page. Verify
-                every payment request through the official contact form
-                before sending money.
+                your MFS PIN, wallet password, or card credentials, or one-time
+                passwords. QR recipient details, when configured, are readable
+                by anyone viewing this page. Verify every payment request
+                through the official contact form before sending money.
               </p>
             </div>
           </div>

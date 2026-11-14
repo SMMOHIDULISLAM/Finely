@@ -42,9 +42,9 @@ export default function Home() {
             </h1>
             <p>
               An AI-solutions firm: we design, build and deploy AI agents,
-              deliver corporate and international AI projects through our
-              expert network, and teach AI simply — everything we serve, we
-              serve with AI.
+              deliver corporate and international AI projects through our expert
+              network, and teach AI simply — everything we serve, we serve with
+              AI.
             </p>
             <div className="hero-buttons">
               <Link href="/services" className="btn btn-mint">
@@ -88,6 +88,19 @@ export default function Home() {
           </a>
         </div>
       </section>
+      <section className="wrap ph-promo" aria-labelledby="prompt-house-intro">
+        <div>
+          <span className="eyebrow">NEW · FINELYBD PROMPT HOUSE</span>
+          <h2 id="prompt-house-intro">One hundred ways to get started.</h2>
+          <p>
+            100 fixed free AI prompts for everyone. Paid custom prompts: ৳500 +
+            VAT each.
+          </p>
+        </div>
+        <Link href="/prompt-house" className="btn btn-primary">
+          Explore Prompt House →
+        </Link>
+      </section>
 
       <WeatherStrip />
 
@@ -123,7 +136,9 @@ export default function Home() {
               <h2>
                 Five divisions.
                 <br />
-                <span className="muted-heading">Twenty-seven ways we help.</span>
+                <span className="muted-heading">
+                  Twenty-seven ways we help.
+                </span>
               </h2>
             </div>
             <div className="heading-aside">

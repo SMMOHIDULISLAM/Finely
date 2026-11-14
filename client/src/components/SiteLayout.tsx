@@ -27,6 +27,7 @@ export function Header() {
   const links = [
     { label: "Home", path: "/" },
     { label: "Services", path: "/services" },
+    { label: "Prompt House", path: "/prompt-house" },
     { label: "About us", path: "/about" },
     { label: "Leadership", path: "/about#leadership" },
     { label: "Contact", path: "/contact" },
@@ -120,7 +121,13 @@ export function Footer() {
       <div className="wrap footer-top">
         <div className="footer-brand">
           <Link href="/" className="brand">
-            <img className="brand-mark" src={assets.logo} alt="" width="46" height="46" />
+            <img
+              className="brand-mark"
+              src={assets.logo}
+              alt=""
+              width="46"
+              height="46"
+            />
             <span className="brand-word">
               Finely<em>BD</em>
             </span>
@@ -137,6 +144,7 @@ export function Footer() {
         <div className="footer-links">
           <span>Explore</span>
           <Link href="/services">Our services</Link>
+          <Link href="/prompt-house">Prompt House</Link>
           <Link href="/about">About FinelyBD</Link>
           <Link href="/about#leadership">Our leadership</Link>
         </div>
@@ -159,7 +167,7 @@ export function Footer() {
           © {new Date().getFullYear()} FinelyBD. All rights reserved.
         </span>
         <span className="demo-label">
-          <i /> Design preview · No live-site changes
+          <i /> FinelyBD · Business solutions for Bangladesh
         </span>
         <a
           href="https://www.finelybd.com"
@@ -205,8 +213,10 @@ export function RouteEffects() {
       "/portal": "Client & Staff Portal",
       "/mobile-app": "FinelyBD on Mobile",
       "/payments": "Payment Information",
+      "/prompt-house": "Prompt House — 100 Free AI Prompts",
     };
-    let pageTitle: string | undefined = titles[pathAliases[location] || location];
+    let pageTitle: string | undefined =
+      titles[pathAliases[location] || location];
     if (!pageTitle && location.startsWith("/services/")) {
       const service = getService(location.split("/")[2]);
       pageTitle = service ? service.title : undefined;

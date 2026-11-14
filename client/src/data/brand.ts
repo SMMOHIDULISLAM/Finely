@@ -32,10 +32,28 @@ export const services = allServices.map(service => ({
 
 export const leaders = [
   {
-    name: "Umme Mazrin Nabiha",
+    name: "Al Mahmud",
     role: "Chairman",
+    initials: "AM",
+    bio: "Finance and banking expert with 14 years of experience and a specialist in Islamic banking. Holds an MSc and BSc in Physics from Shahjalal University of Science and Technology (SUST), a Banking Diploma, and an LLB from National University. Senior Fellow in Bank and Finance for Conventional and Islamic Banking.",
+  },
+  {
+    name: "Umme Mazrin Nabiha",
+    role: "Director — YouTube Video Production & Content Creation",
     initials: "UN",
-    bio: "Chairman and Co-Founder of FinelyBD, providing strategic governance and institutional vision to the organization. A self-educated, visionary leader representing the next generation of leadership, with remarkable foresight and clarity of purpose. Shapes the company's long-term vision, upholds corporate governance, and ensures FinelyBD grows as an institution built on values, innovation, and integrity.",
+    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
+  },
+  {
+    name: "Jazliha Zaireen",
+    role: "Director — YouTube Video Production & Content Creation",
+    initials: "JZ",
+    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
+  },
+  {
+    name: "Zahed Ahmed",
+    role: "Director — Security & Protocol Management",
+    initials: "ZA",
+    bio: "Director responsible for security and protocol management at FinelyBD, including outsourcing and management of temporary security personnel.",
   },
   {
     name: "Saif Ahmed Jaigirder",
@@ -68,7 +86,7 @@ export const leaders = [
     bio: "Director and Head of Consultancy for Architecture and Building Construction at FinelyBD. Holds a BSc in Civil Engineering and an MSc in Data Science, and is pursuing a PhD on building material segregation. Combines theoretical and practical construction expertise in both designing and implementing, and leads the company's largest team of construction sites with a creative, quality-first approach.",
   },
   {
-    name: "Md Ashakur Rahman",
+    name: "Md. Ashfakur Rahman",
     role: "Director",
     initials: "AR",
     bio: "Director of FinelyBD and Head of ICT Operations, AI Solutions, AI Agent Development and Cybersecurity, leading the company's Training & Development wing. Holds a BSc in CSE and an MSc in Data Science, and serves as faculty at Leading University, Sylhet. A pivotal force behind the company's technology backbone and its AI/ML education programs, he leads FinelyBD's largest team.",
@@ -102,5 +120,11 @@ export const leaders = [
     role: "Consultant",
     initials: "SS",
     bio: "Consultant to FinelyBD and Deputy Director at Bangladesh Bank. Holds a BBA, an MBA and an MSc in Data Science, and is an AI expert in governing accounting, finance, financial derivatives and banking — especially digital banking. Supports the company with judicious input for its financial AI agent development and financial product marketing for financial organizations.",
+  },
+  {
+    name: "S M Nawshad Kaysar",
+    role: "Consultant — HR & Recruitment",
+    initials: "NK",
+    bio: "HR and recruitment specialist with advanced training in human resources and recruitment. Holds an MSS and BSS in International Relations and an MSS in Economics from the University of Dhaka, along with a Banking Diploma.",
   },
 ];
