@@ -110,6 +110,12 @@ export const leaders = [
     bio: "Director responsible for security and protocol management at FinelyBD, including outsourcing and management of temporary security personnel.",
   },
   {
+    name: "Abdul Qader Khan",
+    role: "Director — Digital Bank Onboarding & Field Marketing",
+    initials: "AQ",
+    bio: "Director responsible for digital bank onboarding and field marketing outside the Sylhet area.",
+  },
+  {
     name: "S M Mohidul Islam",
     role: "Consultant",
     initials: "MI",
