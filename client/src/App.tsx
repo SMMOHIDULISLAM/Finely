@@ -1,13 +1,11 @@
+import PromptHouse from "./pages/PromptHouse";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Header, Footer, RouteEffects } from "./components/SiteLayout";
 import AssistantWidget from "./components/AssistantWidget";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import {
-  ServicesPage,
-  ServiceDetailPage,
-} from "./pages/ServicePages";
+import { ServicesPage, ServiceDetailPage } from "./pages/ServicePages";
 import {
   AboutPage,
   ContactPage,
@@ -28,6 +26,7 @@ export default function App() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/index.html" component={Home} />
+          <Route path="/prompt-house" component={PromptHouse} />
           <Route path="/services" component={ServicesPage} />
           <Route path="/services/:id" component={ServiceDetailPage} />
           <Route path="/about" component={AboutPage} />
