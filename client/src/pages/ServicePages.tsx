@@ -1,3 +1,4 @@
+import PricingSection from "@/components/PricingSection";
 /**
  * Services hub (/services) and individual service pages (/services/:id).
  * Five divisions, twenty-seven services — each service has its own page
@@ -80,7 +81,16 @@ function CategoryBand({ category }: { category: ServiceCategory }) {
         <div className="cat-band-head">
           <div>
             <span className="eyebrow light">
-              <i /> DIVISION {category.id === "ai-digital" ? "01" : category.id === "finance" ? "02" : category.id === "construction" ? "03" : category.id === "business" ? "04" : "05"}
+              <i /> DIVISION{" "}
+              {category.id === "ai-digital"
+                ? "01"
+                : category.id === "finance"
+                  ? "02"
+                  : category.id === "construction"
+                    ? "03"
+                    : category.id === "business"
+                      ? "04"
+                      : "05"}
             </span>
             <h2 id={`cat-${category.id}`}>{category.title}</h2>
             <p className="cat-tagline">{category.tagline}</p>
@@ -132,6 +142,7 @@ export function ServicesPage() {
         intro="From AI agents to skyscraper contracts — a multifunctional firm built so that whatever your ambition, there is a desk at FinelyBD that handles it."
       />
       <DivisionNav />
+      <PricingSection />
       <div className="supporting-content">
         {serviceCategories.map(category => (
           <CategoryBand key={category.id} category={category} />
@@ -204,7 +215,10 @@ export function ServiceDetailPage({ params }: { params: { id: string } }) {
               <a href={`/services#${category.id}`}>{category.short}</a>
             </nav>
             <div className="svc-hero-title">
-              <span className={`icon-box xl ${service.color}`} aria-hidden="true">
+              <span
+                className={`icon-box xl ${service.color}`}
+                aria-hidden="true"
+              >
                 <Icon size={34} strokeWidth={1.6} />
               </span>
               <div>
