@@ -38,24 +38,6 @@ export const leaders = [
     bio: "Finance and banking expert with 14 years of experience and a specialist in Islamic banking. Holds an MSc and BSc in Physics from Shahjalal University of Science and Technology (SUST), a Banking Diploma, and an LLB from National University. Senior Fellow in Bank and Finance for Conventional and Islamic Banking.",
   },
   {
-    name: "Umme Mazrin Nabiha",
-    role: "Director — YouTube Video Production & Content Creation",
-    initials: "UN",
-    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
-  },
-  {
-    name: "Jazliha Zaireen",
-    role: "Director — YouTube Video Production & Content Creation",
-    initials: "JZ",
-    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
-  },
-  {
-    name: "Zahed Ahmed",
-    role: "Director — Security & Protocol Management",
-    initials: "ZA",
-    bio: "Director responsible for security and protocol management at FinelyBD, including outsourcing and management of temporary security personnel.",
-  },
-  {
     name: "Saif Ahmed Jaigirder",
     role: "MD & CEO",
     initials: "SJ",
@@ -108,6 +90,24 @@ export const leaders = [
     role: "Director",
     initials: "RH",
     bio: "Director of FinelyBD and Head of Research and Development, also leading the Corporate Sales Team. Holds a BSc in Statistics and an MSc in Data Science. Participates in online bidding for the company, hunts potential national and international buyers, presents demos of the company's products, and ensures optimum quality and customer relationships through cross-divisional workforces.",
+  },
+  {
+    name: "Umme Mazrin Nabiha",
+    role: "Director — YouTube Video Production & Content Creation",
+    initials: "UN",
+    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
+  },
+  {
+    name: "Jazliha Zaireen",
+    role: "Director — YouTube Video Production & Content Creation",
+    initials: "JZ",
+    bio: "Director responsible for developing YouTube video production and content creation at FinelyBD.",
+  },
+  {
+    name: "Zahed Ahmed",
+    role: "Director — Security & Protocol Management",
+    initials: "ZA",
+    bio: "Director responsible for security and protocol management at FinelyBD, including outsourcing and management of temporary security personnel.",
   },
   {
     name: "S M Mohidul Islam",
